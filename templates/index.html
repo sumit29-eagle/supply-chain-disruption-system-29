@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SupplyChain Sentinel | Disruption Intelligence</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">SC</span><span>SupplyChain<br><b>Sentinel</b></span></div>
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav-item active" href="#overview"><span>▦</span> Overview</a>
+      <a class="nav-item" href="#agents"><span>◈</span> Risk agents</a>
+      <a class="nav-item" href="#actions"><span>↗</span> Action plan</a>
+      <div class="sidebar-bottom">
+        <div class="live-dot"></div><span>Analysis engine ready</span>
+        <p>Decision-support prototype<br>Build v1.0</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><div class="eyebrow">OPERATIONS INTELLIGENCE</div><h1>Disruption overview</h1></div>
+        <div class="top-right"><span class="status-pill"><i></i> System online</span><div class="avatar">SC</div></div>
+      </header>
+
+      <section class="welcome">
+        <div><p class="eyebrow light">SUPPLY CHAIN RESILIENCE</p><h2>See risk early. Act with confidence.</h2><p>Coordinate specialist agents to assess supplier, inventory, logistics and demand exposure.</p></div>
+        <div class="welcome-icon">⌁</div>
+      </section>
+
+      <section class="panel input-panel" id="overview">
+        <div class="section-heading"><div><h3>Scenario controls</h3><p>Adjust the inputs and run a fresh assessment.</p></div><span class="mini-badge">MULTI-AGENT ANALYSIS</span></div>
+        <form id="analysis-form">
+          <div class="form-grid">
+            <label>Supplier delay <span>days</span><input type="number" id="supplier_delay_days" min="0" max="90" value="4" required></label>
+            <label>Inventory coverage <span>days of stock</span><input type="number" id="inventory_days" min="0" max="365" value="8" required></label>
+            <label>Transport delay <span>days</span><input type="number" id="transport_delay_days" min="0" max="90" value="2" required></label>
+            <label>Demand spike <span>% above baseline</span><input type="number" id="demand_spike_pct" min="0" max="300" value="15" required></label>
+          </div>
+          <div class="mode-row">
+            <div><label class="mode-label" for="mode">Signal mode</label><select id="mode"><option value="demo">Demo scenario (works offline)</option><option value="live">Live weather signal (internet required)</option></select></div>
+            <div id="city-wrap" class="hidden"><label class="mode-label" for="weather_city">Weather location</label><input id="weather_city" value="Indore" maxlength="80" placeholder="e.g. Indore"></div>
+            <button class="primary-btn" type="submit" id="run-btn"><span>↻</span> Run assessment</button>
+          </div>
+        </form>
+        <div class="notice"><span>ⓘ</span><p>Live mode uses current weather as a logistics risk proxy. It does not connect to carrier tracking, port feeds, or live supplier systems.</p></div>
+        <div id="error-box" class="error-box hidden" role="alert"></div>
+      </section>
+
+      <section class="metric-grid" aria-label="Risk summary">
+        <article class="metric-card risk-card"><div class="metric-top"><span>OVERALL RISK SCORE</span><span class="metric-icon">◉</span></div><div class="metric-value"><strong id="overall-score">—</strong><span>/100</span></div><div class="meter"><span id="overall-meter"></span></div><div class="metric-foot"><span id="risk-level" class="risk-tag">Waiting for analysis</span><span>Composite heuristic</span></div></article>
+        <article class="metric-card"><div class="metric-top"><span>AGENTS ANALYZED</span><span class="metric-icon blue">◈</span></div><div class="metric-value"><strong id="agents-count">4</strong><span>agents</span></div><div class="metric-foot"><span class="positive">● All specialist agents</span><span>Coordinated</span></div></article>
+        <article class="metric-card"><div class="metric-top"><span>RECOMMENDED ACTIONS</span><span class="metric-icon amber">↗</span></div><div class="metric-value"><strong id="actions-count">—</strong><span>actions</span></div><div class="metric-foot"><span>Prioritized response</span><span id="updated-time">Not run yet</span></div></article>
+      </section>
+
+      <section class="panel" id="agents">
+        <div class="section-heading"><div><h3>Specialist agent findings</h3><p>Each agent scores one source of disruption risk.</p></div><span class="subtle-label">0–100 RISK SCALE</span></div>
+        <div id="agent-grid" class="agent-grid">
+          <div class="empty-state">Run an assessment to view agent findings.</div>
+        </div>
+      </section>
+
+      <section class="lower-grid">
+        <section class="panel" id="actions">
+          <div class="section-heading"><div><h3>Recommended action plan</h3><p>Suggested mitigations based on the current scenario.</p></div></div>
+          <div id="recommendations" class="recommendations"><div class="empty-state">Your prioritized actions will appear here.</div></div>
+        </section>
+        <section class="panel weather-panel">
+          <div class="section-heading"><div><h3>Weather signal</h3><p>Context for transport exposure</p></div><span id="weather-source" class="mini-badge">DEMO</span></div>
+          <div class="weather-main"><div class="weather-symbol">☁</div><div><div id="weather-city-result" class="weather-city">Indore</div><div id="weather-description" class="weather-description">Demo scenario</div></div></div>
+          <div class="weather-stats"><div><span>Risk proxy</span><strong id="weather-risk">72/100</strong></div><div><span>Temperature</span><strong id="weather-temp">29°C</strong></div><div><span>Precipitation</span><strong id="weather-rain">18.5 mm</strong></div></div>
+          <p id="weather-note" class="weather-note">Illustrative demo values.</p>
+        </section>
+      </section>
+      <footer>SupplyChain Sentinel · Prototype for decision support · Verify data before operational decisions.</footer>
+    </main>
+  </div>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
