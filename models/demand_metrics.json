@@ -1,0 +1,19 @@
+{
+  "task": "daily_sales_regression",
+  "train_rows": 60000,
+  "test_rows": 49569,
+  "mae": 6.732304135970393,
+  "train_end_date": "2017-01-02",
+  "test_start_date": "2017-01-03",
+  "features": [
+    "store",
+    "item",
+    "lag_1",
+    "lag_7",
+    "lag_14",
+    "rolling_mean_7",
+    "day_of_week",
+    "month",
+    "day_of_month"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "task": "delivery_delay_classification",
+  "train_rows": 80000,
+  "test_rows": 20000,
+  "accuracy": 0.70565,
+  "precision_weighted": 0.745011082480793,
+  "recall_weighted": 0.70565,
+  "f1_weighted": 0.703690347437324,
+  "features": [
+    "shipping_mode",
+    "market",
+    "order_region",
+    "customer_segment",
+    "department_name",
+    "category_name",
+    "order_item_quantity",
+    "order_item_product_price",
+    "order_item_discount_rate",
+    "order_item_profit_ratio",
+    "sales"
+  ]
+}
